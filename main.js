@@ -1,10 +1,10 @@
 // console.log("Hello welcome to backend, This is a first assignment in backend. In this we learn how to use node and how modules can work.");
 
 
-const add = require('./addition')
-const sub = require('./substraction')
-const mult = require('./multiplication')
-const divide = require('./division')
+const add = require('./add')
+const sub = require('./subtract')
+const mult = require('./multiply')
+const divide = require('./divide')
 
 let addition = add(21, 32);
 console.log('addition:', addition)
