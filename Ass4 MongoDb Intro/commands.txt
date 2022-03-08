@@ -1,0 +1,56 @@
+mongo
+
+show dbs
+
+use assignment 
+
+show collections
+
+db.createCollection ("users")
+
+show collections
+
+db.users.insert({"first_name":"Nayan","last_name":"Ingale","email":"nayan@gmail.com","gender":"Male","ip_address":"128.0.0.0","age":24})
+
+db.users.insert({"first_name":"Shubham","last_name":"Umap","email":"shubham@gmail.com","gender":"Male","ip_address":"128.1.0.1","age":23})
+
+db.users.insertMany([{"first_name":"Mohak","last_name":"Tripathi","email":"mohak@gmail.com","gender":"Male","age":23},{"first_name":"Jay","last_name":"Sanodiya","email":"jay@gmail.com","gender":"Male","age":25},{"first_name":"Sagar","last_name":"Sawant","email":"sagar@gmail.com","gender":"Male","age":26},{"first_name":"Datta","last_name":"Pawar","email":"datta@gmail.com","gender":"Male","age":28},{"first_name":"Pankaj","last_name":"Nikam","email":"pankaj@gmail.com","gender":"Male","age":30}])
+
+db.users.insertMany([{"first_name":"Babu","last_name":"Bhaiya","email":"bhaiya@gmail.com","gender":"Male","age":28},{"first_name":"Mayuri","last_name":"Warale","email":"mayuri@gmail.com","gender":"Female","age":23},{"first_name":"Teju","last_name":"Mahale","email":"teju@gmail.com","gender":"Female","age":22}])
+
+db.users.count()
+
+db.users.find({}).pretty()
+
+db.users.findOne({"gender":"Female"}).pretty()
+
+db.users.find({"age":24}).pretty()
+
+db.users.update({"first_name":"Nayan"},{$set:{"city":"Nashik"}})
+
+
+db.users.update({"first_name":"Teju"},{$set:{"city":"Pune"}})
+
+db.users.find({"age":23}).pretty()
+
+db.users.updateMany({"age":23},{$set:{"city":"Mumbai"}})
+
+db.users.find({}).pretty()
+
+db.users.remove({"age":22})
+
+db.users.deleteOne({"first_name":"Jay"})
+
+db.users.deleteMany({})   
+
+db.users.count()
+
+db.users.drop()
+
+show collections
+
+db
+
+db.dropDatabase()
+
+show dropDatabase 
