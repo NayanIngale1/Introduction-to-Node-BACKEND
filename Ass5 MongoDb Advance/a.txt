@@ -1,0 +1,32 @@
+show dbs
+
+use web15
+
+show collections
+
+db.movies.count()
+
+db.movies.find({movie_name :{$eq:"Every Day"}}).pretty()
+
+db.movies.find({movie_name :{$ne:"Every Day"}}).pretty()
+
+db.movies.find({budget:{$gte:15000}}).pretty()
+
+db.movies.find({budget:{$lte: 10000}}).pretty()
+
+db.movies.find({$and:[{production_year :{$gt:2000}},{budget:{$gt:10000}}]}).pretty()
+
+db.movies.find({$or:[{production_year:{$gt:2000}},{budget:{$gt:10000}}]}).pretty()
+
+db.movies.find({$nor:[{production_year:{$gt:2000}},{budget:{$gt:10000}}]}).pretty()
+
+db.movies.find({$or:[{production_year :{$not:{$eq:2000}}},{budget:{$not:{$eq:10000}}}]}).pretty()
+
+db.movies.find({$and:[{production_year:{$gte:2000}},{production_year:{$lte:2010}}]}).pretty()
+
+db.movies.find({}).sort({production_year:-1,movie_name:1}).pretty()
+
+db.movies.find({}).sort({production_year:-1,movie_name:1}).skip(10).limit(5).pretty()
+
+
+
