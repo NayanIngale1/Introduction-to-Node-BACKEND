@@ -1,0 +1,3 @@
+Create an express application Create a user model with following fields first_name, last_name, email, pincode, age, gender,
+
+and try to implement below validations on these inputs first_name => required last_name => required email => required and should be a valid email pincode => required and should be exactly 6 numbers age => required and should be between 1 and 100. gender => required and should be either Male, Female or Others Please Note :- You can use express-validator or write your validator logic
