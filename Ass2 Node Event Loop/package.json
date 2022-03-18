@@ -1,7 +1,6 @@
 {
   "name": "ass2-node-event-loop",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.3"
-  }
+    "express": "^4.17.3",
+    "mongoose": "^6.2.6"
+  },
+  "description": ""
 }

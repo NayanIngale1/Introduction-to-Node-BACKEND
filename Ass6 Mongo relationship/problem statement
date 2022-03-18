@@ -1,0 +1,22 @@
+MONGOOSE RELATIONSHIPS
+Create a Library system which has following models
+
+Section ( 1 Book can belong to only one section at a time but 1 section can have multiple books )
+
+Books ( Book can be written by 1 or more author and also contains name, body )
+
+Author ( an author can write one or more books and he also has first_name and last_name). Optional
+
+CheckedOut (one book can be checked out by 1 user at a time) ( Hint here is you will need book_id, checkedOutTime (default null) and checkedInTime (default null) and if checkedOutTime is not null and checkedInTime is null it means the book is checkedOut and not available and if both are not null or both are null then book is available for checkOut.
+
+Write CRUD for all these models and also write api endpoints that can help with below situations
+
+find all books written by an author
+
+find books in a section
+
+find books in a section that are not checked out
+
+find books of 1 author inside a section Optional
+
+find books that are checked out ( This is optional as if you skipped the CheckedOut model then you will not be able to do this )
