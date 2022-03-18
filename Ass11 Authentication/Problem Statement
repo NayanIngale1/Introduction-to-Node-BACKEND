@@ -1,0 +1,10 @@
+
+
+
+Create a user model and have these fields :- name ( required ) email ( required ) password ( required ) timestamps
+
+create a register and a login route for registering and logging in users have validations in register for name, email and password have validations in login for email and password
+
+Create a Post model with following fields title ( required ) body ( required ) user ( references the user collection and is required )
+
+Create the crud for /posts ( Everyone should know what crud is by now ) If user is authenticated only then he should be able to access insert, update and delete posts apis.
