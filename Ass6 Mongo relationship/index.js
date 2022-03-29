@@ -84,15 +84,6 @@ const bookSchema = new mongoose.Schema(
       ref: "section",
       required: true,
     },
-    authors: [
-      {
-        authorId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "author",
-          reqired: true,
-        },
-      },
-    ],
   },
   {
     versionKey: false,
@@ -102,6 +93,29 @@ const bookSchema = new mongoose.Schema(
 
 //step-2 : creating the model
 const Book = mongoose.model("book", bookSchema);
+
+// - Create schema for BOOK-AUTHOR
+
+const bookAuthorSchema = new mongoose.Schema(
+  {
+    book_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "book",
+      required: true,
+    },
+    author_id: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "author", required: true },
+    ],
+  },
+  {
+    versionKey: false,
+    timestamps: true,
+  }
+);
+
+//  Connect the Schema to bookAuthors collection
+
+const BookAuthor = mongoose.model("bookAuthor", bookAuthorSchema);
 
 //      CHECKOUT SCHEMA
 //step -1 : creating schema
@@ -218,6 +232,15 @@ app.post("/books", async (req, res) => {
   }
 });
 
+app.get("/books/:id", async (req, res) => {
+  try {
+    const book = await Book.findById(req.params.id).lean().exec();
+    res.status(200).send({ book });
+  } catch (err) {
+    return re.status(500).send({ Error: err.message });
+  }
+});
+
 //  CHECKED OUT CRUD
 app.get("/checkedOutData", async (req, res) => {
   try {
@@ -238,6 +261,46 @@ app.post("/checkedOutData", async (req, res) => {
     return res.status(500).send({ Error: err.message });
   }
 });
+
+// ---------------- Other Crud Operations ----------------
+
+// All books written by an Author
+
+app.get("/booksbyauthor/:id", async (req, res) => {
+  try {
+    const match = await BookAuthor.find({ author_id: req.params.id })
+      .lean()
+      .populate("book_id")
+      .exec();
+    res.send(match);
+  } catch (err) {
+    return res.status(500).send({ Error: err.message });
+  }
+});
+
+// getting books in a section
+app.get("/books/:sectionId", async (req,res) => {
+    try {
+        const books = await Book.find({section_id: req.params.sectionId})
+            .lean()
+            .exec();
+        return res.status(200).send(books);
+    } catch (err) {
+        return res.status(500).send({error: err});
+    }
+});
+
+// getting books of one author inside a section
+app.get("/books/:authorId/:sectionId", async (req,res) => {
+    try {
+        const books = await Book.find({author_id: req.params.authorId, section_id: req.params.sectionId})
+            .lean()
+            .exec();
+        return res.status(200).send(books);
+    } catch (err) {
+        return res.status(500).send({error : err});
+    }
+})
 
 //starting the server
 app.listen(9000, async () => {
